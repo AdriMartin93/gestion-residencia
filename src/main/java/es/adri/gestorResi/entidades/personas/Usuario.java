@@ -1,5 +1,6 @@
-package es.adri.gestorResi.entidades;
+package es.adri.gestorResi.entidades.personas;
 
+import es.adri.gestorResi.entidades.enums.Rol;
 import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package es.adri.gestorResi.entidades;
+package es.adri.gestorResi.entidades.enums;
 
 public enum Rol {
     ROLE_DIRECTOR,

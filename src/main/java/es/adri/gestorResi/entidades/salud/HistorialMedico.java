@@ -1,4 +1,4 @@
-package es.adri.gestorResi.entidades;
+package es.adri.gestorResi.entidades.salud;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

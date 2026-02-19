@@ -1,4 +1,4 @@
-package es.adri.gestorResi.entidades;
+package es.adri.gestorResi.entidades.personas;
 
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;

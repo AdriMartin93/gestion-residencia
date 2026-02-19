@@ -1,0 +1,17 @@
+package es.adri.gestorResi.entidades;
+
+public enum Rol {
+    ROLE_DIRECTOR,
+    ROLE_DOCTOR,
+    ROLE_PSICOLOGO,
+    ROLE_ENFERMERO,
+    ROLE_AUXILIAR,
+    ROLE_TRSOCIAL,
+    ROLE_FISIO,
+    ROLE_ANIMADOR,
+    ROLE_MANTENIMIENTO,
+    ROLE_COCINERO,
+    ROLE_ADMINISTRACION,
+    ROLE_ENCARGADO,
+    ROLE_LIMPIEZA
+}

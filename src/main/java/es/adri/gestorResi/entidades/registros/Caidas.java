@@ -3,7 +3,7 @@ package es.adri.gestorResi.entidades.registros;
 import es.adri.gestorResi.entidades.enums.Caidas.Calzado;
 import es.adri.gestorResi.entidades.enums.Caidas.ConsecuenciaCaida;
 import es.adri.gestorResi.entidades.personas.Residente;
-import es.adri.gestorResi.entidades.personas.Usuario;
+import es.adri.gestorResi.entidades.personas.Empleado;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -43,6 +43,7 @@ public class Caidas {
 
     private String acciones;
 
-    private Usuario auxiliar;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Empleado auxiliar;
 
 }

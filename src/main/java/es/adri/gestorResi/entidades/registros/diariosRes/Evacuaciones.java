@@ -1,4 +1,4 @@
-package es.adri.gestorResi.entidades.registros;
+package es.adri.gestorResi.entidades.registros.diariosRes;
 
 
 import es.adri.gestorResi.entidades.enums.evacuaciones.CantidadDepo;
@@ -6,7 +6,7 @@ import es.adri.gestorResi.entidades.enums.evacuaciones.CantidadOrina;
 import es.adri.gestorResi.entidades.enums.evacuaciones.TipoDepo;
 import es.adri.gestorResi.entidades.enums.evacuaciones.TipoOrina;
 import es.adri.gestorResi.entidades.personas.Residente;
-import es.adri.gestorResi.entidades.personas.Usuario;
+import es.adri.gestorResi.entidades.personas.Empleado;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -37,5 +37,5 @@ public class Evacuaciones {
     private TipoDepo depo;
 
     @ManyToOne
-    private Usuario auxiliar;
+    private Empleado auxiliar;
 }

@@ -29,5 +29,5 @@ public class HistorialMedico {
     private String movilidad;
 
     @OneToMany(mappedBy = "historialMedico",cascade = CascadeType.ALL)
-    private List<Tratamiento> tratamientos;
+    private List<PautaMedica> pautaMedica;
 }

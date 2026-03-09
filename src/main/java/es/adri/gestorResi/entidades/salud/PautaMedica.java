@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -25,7 +26,7 @@ public class PautaMedica {
     private Medicamento medicamento;
 
     private String dosis;
-    private LocalDate hora;
+    private LocalDateTime fechaHora;
     private String duracion;
     private String observaciones;
 }

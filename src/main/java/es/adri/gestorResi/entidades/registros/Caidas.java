@@ -5,6 +5,9 @@ import es.adri.gestorResi.entidades.enums.Caidas.ConsecuenciaCaida;
 import es.adri.gestorResi.entidades.personas.Residente;
 import es.adri.gestorResi.entidades.personas.Empleado;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -12,6 +15,9 @@ import java.util.Set;
 
 @Entity
 @Table(name = "registros_caidas")
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class Caidas {
 
     @Id
@@ -44,6 +50,6 @@ public class Caidas {
     private String acciones;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Empleado auxiliar;
+    private Empleado empleado;
 
 }

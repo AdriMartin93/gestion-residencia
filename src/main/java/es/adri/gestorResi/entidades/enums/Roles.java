@@ -1,6 +1,6 @@
 package es.adri.gestorResi.entidades.enums;
 
-public enum Rol {
+public enum Roles {
     ROLE_DIRECTOR,
     ROLE_DOCTOR,
     ROLE_PSICOLOGO,

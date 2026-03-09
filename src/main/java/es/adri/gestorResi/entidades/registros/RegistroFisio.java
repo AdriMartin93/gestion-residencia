@@ -9,13 +9,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class SesionFisio {
+public class RegistroFisio {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,6 +27,8 @@ public class SesionFisio {
 
     @Enumerated(EnumType.STRING)
     private ActividadFisio actividadFisio;
+
+    private LocalDate fechaRegistro;
 
     @ManyToMany
     @JoinTable(name = "participacion_sesion_fisio",

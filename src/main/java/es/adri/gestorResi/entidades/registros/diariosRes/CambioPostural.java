@@ -1,6 +1,8 @@
 package es.adri.gestorResi.entidades.registros.diariosRes;
 
 
+import es.adri.gestorResi.entidades.enums.Posiciones;
+import es.adri.gestorResi.entidades.personas.Empleado;
 import es.adri.gestorResi.entidades.personas.Residente;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -22,10 +24,14 @@ public class CambioPostural {
     @ManyToOne
     @JoinColumn(name = "residente_id")
     private Residente residente;
+    @ManyToOne
+    @JoinColumn(name = "empleado_id")
+    private Empleado empleado;
 
-    private LocalDateTime fechaHora; // Fecha y hora del cambio
+    private LocalDateTime fechaHora;
 
-    private String posicion; // Ej: Izquierda, Derecha, Espalda, Sentado
+    @Enumerated(EnumType.STRING)
+    private Posiciones posicion;
 
     private String observaciones;
 

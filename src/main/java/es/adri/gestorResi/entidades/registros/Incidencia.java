@@ -24,7 +24,7 @@ public class Incidencia {
     @ManyToOne
     private Residente residente;
 
-    private LocalDateTime fecha;
+    private LocalDateTime fechaHora;
 
     private Incidencias tipo;
 

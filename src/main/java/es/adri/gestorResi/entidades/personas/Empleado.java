@@ -1,7 +1,7 @@
 package es.adri.gestorResi.entidades.personas;
 
-import es.adri.gestorResi.entidades.enums.Rol;
-import jakarta.persistence.Entity;
+import es.adri.gestorResi.entidades.enums.Roles;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,7 +14,7 @@ import java.util.Set;
 @Entity
 public class Empleado {
 
-    private String id;
+    private Long id;
     private String nombreUsuario;
     private String dni;
     private String nombre;
@@ -22,7 +22,11 @@ public class Empleado {
     private String password;
     private String email;
     private String telefono;
-    private Set<Rol> roles;
+
+    @ElementCollection(targetClass = Roles.class)
+    @CollectionTable(name = "empleado_roles", joinColumns = @JoinColumn(name = "empleado_id"))
+    @Enumerated(EnumType.STRING)
+    private Set<Roles> roles;
 
 }
 

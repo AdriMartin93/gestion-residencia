@@ -8,9 +8,15 @@ import es.adri.gestorResi.entidades.enums.evacuaciones.TipoOrina;
 import es.adri.gestorResi.entidades.personas.Residente;
 import es.adri.gestorResi.entidades.personas.Empleado;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "registros_evacuaciones")
 public class Evacuaciones {
@@ -37,5 +43,5 @@ public class Evacuaciones {
     private TipoDepo depo;
 
     @ManyToOne
-    private Empleado auxiliar;
+    private Empleado empleado;
 }

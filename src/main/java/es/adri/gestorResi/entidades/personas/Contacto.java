@@ -15,4 +15,5 @@ public class Contacto {
     private String parentesco;
     private String telefono;
     private String email;
+
 }

@@ -6,6 +6,7 @@ import es.adri.gestorResi.repositorio.EmpleadoRepository;
 import es.adri.gestorResi.repositorio.IncidenciaRepository;
 import es.adri.gestorResi.repositorio.ResidenteRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,10 @@ public class IncidenciasService {
     private final ResidenteRepository residenteRepository;
     private final IncidenciaRepository incidenciaRepository;
 
+
+    @Transactional
     public void registrarIncidencia(Incidencia incidencia){
+
         incidenciaRepository.save(incidencia);
     }
 
@@ -38,7 +42,9 @@ public class IncidenciasService {
                 .orElseThrow(()-> new EntityNotFoundException("Incidencia no encontrada"));
     }
 
+    @Transactional
     public void borrarIncidencia(Long id){
+
         incidenciaRepository.deleteById(id);
     }
 }

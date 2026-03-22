@@ -11,6 +11,8 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+
 @Service
 @RequiredArgsConstructor
 public class ResidenteService {
@@ -27,6 +29,7 @@ public class ResidenteService {
 
     @Transactional
     public void borrarResidente(Residente residente){
+
         residenteRepository.delete(residente);
     }
 
@@ -46,19 +49,45 @@ public class ResidenteService {
     }
 
     @Transactional
-    public Residente editarResidente(Long id, Residente datosNuevos) {
+    public void editarNombre(Long id, String nuevoNombre) {
+        Residente residente = residenteRepository.findByResidenteId(id)
+                .orElseThrow(() -> new EntityNotFoundException("Residente no encontrado"));
+        residente.setNombre(nuevoNombre);
+    }
 
-        Residente residenteExistente = residenteRepository.findByResidenteId(id)
-                .orElseThrow(() -> new EntityNotFoundException("No se puede editar: Residente no encontrado"));
+    @Transactional
+    public void editarApellidos(Long id, String nuevosApellidos) {
+        Residente residente = residenteRepository.findByResidenteId(id)
+                .orElseThrow(() -> new EntityNotFoundException("Residente no encontrado"));
+        residente.setApellidos(nuevosApellidos);
+    }
 
-        residenteExistente.setNombre(datosNuevos.getNombre());
-        residenteExistente.setApellidos(datosNuevos.getApellidos());
-        residenteExistente.setDni(datosNuevos.getDni());
-        residenteExistente.setTis(datosNuevos.getTis());
-        residenteExistente.setFecha_nacimiento(datosNuevos.getFecha_nacimiento());
-        residenteExistente.setHabitacion(datosNuevos.getHabitacion());
+    @Transactional
+    public void editarDni(Long id, String nuevoDni) {
+        Residente residente = residenteRepository.findByResidenteId(id)
+                .orElseThrow(() -> new EntityNotFoundException("Residente no encontrado"));
+        residente.setDni(nuevoDni);
+    }
 
-        return residenteRepository.save(residenteExistente);
+    @Transactional
+    public void editarTis(Long id, String nuevoTis) {
+        Residente residente = residenteRepository.findByResidenteId(id)
+                .orElseThrow(() -> new EntityNotFoundException("Residente no encontrado"));
+        residente.setTis(nuevoTis);
+    }
+
+    @Transactional
+    public void editarFechaNacimiento(Long id, LocalDate nuevaFecha) {
+        Residente residente = residenteRepository.findByResidenteId(id)
+                .orElseThrow(() -> new EntityNotFoundException("Residente no encontrado"));
+        residente.setFechaNacimiento(nuevaFecha);
+    }
+
+    @Transactional
+    public void editarHabitacion(Long id, String nuevaHabitacion) {
+        Residente residente = residenteRepository.findByResidenteId(id)
+                .orElseThrow(() -> new EntityNotFoundException("Residente no encontrado"));
+        residente.setHabitacion(nuevaHabitacion);
     }
 }
 

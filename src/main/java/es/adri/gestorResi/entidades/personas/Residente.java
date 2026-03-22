@@ -23,7 +23,7 @@ public class Residente {
     private String tis;
     private String nombre;
     private String apellidos;
-    private LocalDate fecha_nacimiento;
+    private LocalDate fechaNacimiento;
     private String habitacion;
 
     @ElementCollection

@@ -20,11 +20,10 @@ public class PautaMedica {
     private Long id;
 
     @ManyToOne
-    private Residente resident;
+    private Residente residente;
 
-    @ManyToOne
-    private Medicamento medicamento;
 
+    private String medicamento;
     private String dosis;
     private LocalDateTime fechaHora;
     private String duracion;

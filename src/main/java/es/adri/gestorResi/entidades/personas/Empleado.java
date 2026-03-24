@@ -14,7 +14,10 @@ import java.util.Set;
 @Entity
 public class Empleado {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String nombreUsuario;
     private String dni;
     private String nombre;

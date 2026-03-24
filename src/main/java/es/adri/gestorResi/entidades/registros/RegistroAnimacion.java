@@ -30,7 +30,7 @@ public class RegistroAnimacion {
     @JoinColumn(name = "empleado_id", nullable = false)
     private Empleado empleado;
 
-    // Relación para saber qué residentes participaron en la actividad
+
     @ManyToMany
     @JoinTable(
             name = "animacion_participantes",

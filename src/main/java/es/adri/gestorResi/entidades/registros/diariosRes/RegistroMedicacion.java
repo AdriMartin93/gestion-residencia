@@ -34,7 +34,7 @@ public class RegistroMedicacion {
     private EstadoTarea estadoTarea;
 
     @ManyToOne
-    private Empleado auxiliar;
+    private Empleado empleado;
 
     private String observaciones;
 }

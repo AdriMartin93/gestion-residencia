@@ -12,8 +12,8 @@ import java.util.Optional;
 @Repository
 public interface RegistroSocialRepository extends JpaRepository<RegistroSocial, Long> {
 
-    Optional<RegistroSocial> findByFechaRegistro(LocalDate fecha);
-    List<RegistroSocial> findAllByOrderFechaRegistroDesc();
-    List<RegistroSocial> findByTrabajadorSocialId(Long empleadoId);
-    List<RegistroSocial> findByEstado(EstadoTramite estado);
+    Optional<RegistroSocial> findById(Long id);
+    List<RegistroSocial> findAllByOrderByFechaRegistroDesc();
+    List<RegistroSocial> findByAlertaSocialTrue();
+    List<RegistroSocial> findByResidenteIdOrderByFechaRegistroDesc(Long residenteId);
 }

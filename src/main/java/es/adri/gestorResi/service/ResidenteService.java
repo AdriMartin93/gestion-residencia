@@ -12,6 +12,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -33,6 +35,16 @@ public class ResidenteService {
         residenteRepository.delete(residente);
     }
 
+    public List<Residente> listarTodos() {
+        return residenteRepository.findAll();
+    }
+
+    public Residente buscarPorId(Long id) {
+        return residenteRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Residente no encontrado con ID: " + id));
+    }
+
+
     @Transactional
     public void agregarContacto(Long id, Contacto contacto){
         Residente residente = residenteRepository.findByResidenteId(id)
@@ -49,45 +61,38 @@ public class ResidenteService {
     }
 
     @Transactional
-    public void editarNombre(Long id, String nuevoNombre) {
-        Residente residente = residenteRepository.findByResidenteId(id)
+    public void actualizarParcial(Long id, Map<String, Object> campos) {
+        Residente residente = residenteRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Residente no encontrado"));
-        residente.setNombre(nuevoNombre);
+
+        campos.forEach((clave, valor) -> {
+            switch (clave) {
+                case "nombre":
+                    residente.setNombre((String) valor);
+                    break;
+                case "apellidos":
+                    residente.setApellidos((String) valor);
+                    break;
+                case "dni":
+                    residente.setDni((String) valor);
+                    break;
+                case "tis":
+                    residente.setTis((String) valor);
+                    break;
+                case "habitacion":
+                    residente.setHabitacion((String) valor);
+                    break;
+                case "fechaNacimiento":
+                    residente.setFechaNacimiento(LocalDate.parse((String) valor));
+                    break;
+                default:
+                    throw new IllegalArgumentException("El campo " + clave + " no es editable o no existe");
+            }
+        });
+
+        residenteRepository.save(residente);
     }
 
-    @Transactional
-    public void editarApellidos(Long id, String nuevosApellidos) {
-        Residente residente = residenteRepository.findByResidenteId(id)
-                .orElseThrow(() -> new EntityNotFoundException("Residente no encontrado"));
-        residente.setApellidos(nuevosApellidos);
-    }
 
-    @Transactional
-    public void editarDni(Long id, String nuevoDni) {
-        Residente residente = residenteRepository.findByResidenteId(id)
-                .orElseThrow(() -> new EntityNotFoundException("Residente no encontrado"));
-        residente.setDni(nuevoDni);
-    }
-
-    @Transactional
-    public void editarTis(Long id, String nuevoTis) {
-        Residente residente = residenteRepository.findByResidenteId(id)
-                .orElseThrow(() -> new EntityNotFoundException("Residente no encontrado"));
-        residente.setTis(nuevoTis);
-    }
-
-    @Transactional
-    public void editarFechaNacimiento(Long id, LocalDate nuevaFecha) {
-        Residente residente = residenteRepository.findByResidenteId(id)
-                .orElseThrow(() -> new EntityNotFoundException("Residente no encontrado"));
-        residente.setFechaNacimiento(nuevaFecha);
-    }
-
-    @Transactional
-    public void editarHabitacion(Long id, String nuevaHabitacion) {
-        Residente residente = residenteRepository.findByResidenteId(id)
-                .orElseThrow(() -> new EntityNotFoundException("Residente no encontrado"));
-        residente.setHabitacion(nuevaHabitacion);
-    }
 }
 

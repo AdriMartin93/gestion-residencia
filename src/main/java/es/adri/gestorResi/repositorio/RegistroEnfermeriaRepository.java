@@ -12,6 +12,8 @@ import java.util.Optional;
 public interface RegistroEnfermeriaRepository extends JpaRepository<RegistroEnfermeria, Long> {
 
     Optional<RegistroEnfermeria> findByFecha(LocalDate fecha);
-    List<RegistroEnfermeria> findAllByOrderByFechaDesc();
+    List<RegistroEnfermeria> findAllByOrderByFechaHoraDesc();
     List<RegistroEnfermeria> findByEmpleadoId(Long empleadoId);
+    List<RegistroEnfermeria> findByResidenteIdOrderByFechaHoraDesc(Long residenteId);
+
 }

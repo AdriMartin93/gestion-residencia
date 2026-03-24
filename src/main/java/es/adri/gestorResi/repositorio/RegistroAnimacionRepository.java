@@ -12,6 +12,6 @@ import java.util.Optional;
 public interface RegistroAnimacionRepository extends JpaRepository<RegistroAnimacion, Long> {
 
     Optional<RegistroAnimacion> findByFecha(LocalDate fecha);
-    List<RegistroAnimacion> findAllByOrderByFechaDesc();
+    List<RegistroAnimacion> findAllByOrderByFechaHoraDesc();
     List<RegistroAnimacion> findByEmpleadoId(Long empleadoId);
 }

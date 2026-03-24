@@ -10,11 +10,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface ResidenteRepository extends JpaRepository<Residente, Integer> {
+public interface ResidenteRepository extends JpaRepository<Residente, Long> {
 
     Optional<Residente> findByDni(String dni);
     Optional<Residente> findByResidenteId(Long id);
-    List<Residente> findByNombre(String nombre);
     List<Residente> findByHabitacion(String habitacion);
+
 
 }

@@ -18,9 +18,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class EmpleadoService {
 
-    @Autowired
-    private EmpleadoRepository empleadoRepository;
-    private PasswordEncoder passwordEncoder;
+    private final EmpleadoRepository empleadoRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public Empleado findById(Long id) {
         return empleadoRepository.findById(id)

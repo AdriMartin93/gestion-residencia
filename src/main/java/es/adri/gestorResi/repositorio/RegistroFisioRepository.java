@@ -13,7 +13,6 @@ import java.util.Optional;
 public interface RegistroFisioRepository extends JpaRepository<RegistroFisio,Long> {
 
     Optional<RegistroFisio> findByFechaRegistro(LocalDate fecha);
-    List<RegistroFisio> findByEmpleadoId(Long empleadoId);
-    List<RegistroFisio> findByActividadFisio(ActividadFisio actividadFisio);
-    List<RegistroFisio> findByResidentesId(Long residenteId);
+    List<RegistroFisio> findAllByOrderByFechaRegistroDesc();
+    List<RegistroFisio> findByResidentesIdOrderByFechaRegistroDesc(Long residenteId);
 }

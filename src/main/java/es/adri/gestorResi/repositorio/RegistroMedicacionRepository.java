@@ -11,6 +11,6 @@ import java.util.List;
 public interface RegistroMedicacionRepository extends JpaRepository<RegistroMedicacion, Long> {
 
     List<RegistroMedicacion> findByResidenteId(Long residenteId);
-    List<RegistroMedicacion> findByFechaHoraRealBetween(LocalDateTime inicio, LocalDateTime fin);
-    List<RegistroMedicacion> findByResidenteIdAndFechaHoraBetween(Long residenteId, LocalDateTime inicio, LocalDateTime fin);
+    List<RegistroMedicacion> findAllByOrderByFechaHoraRealDesc();
+    List<RegistroMedicacion> findByResidenteIdOrderByFechaHoraRealDesc(Long residenteId);
 }

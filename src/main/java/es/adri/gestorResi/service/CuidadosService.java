@@ -84,10 +84,9 @@ public class CuidadosService {
     }
 
     @Transactional
-
     public void borrarEvacuacion(Long id){
         if(!evacuacionesRepository.existsById(id)){
-            throw new  EntityNotFoundException("No se udo eliminar: el registro no existe");
+            throw new  EntityNotFoundException("No se pudo eliminar: el registro no existe");
         }
         evacuacionesRepository.deleteById(id);
     }
@@ -95,7 +94,7 @@ public class CuidadosService {
     @Transactional
     public void borrarHigiene(Long id){
         if(!higieneRepository.existsById(id)){
-            throw new EntityNotFoundException("No se udo eliminar: el registro no existe");
+            throw new EntityNotFoundException("No se pudo eliminar: el registro no existe");
         }
         higieneRepository.deleteById(id);
     }
@@ -104,7 +103,7 @@ public class CuidadosService {
     @Transactional
     public void borrarCambioPostural(Long id){
         if(!cambiosPosturalesRepository.existsById(id)){
-            throw new EntityNotFoundException("No se udo eliminar: el registro no existe");
+            throw new EntityNotFoundException("No se pudo eliminar: el registro no existe");
         }
         cambiosPosturalesRepository.deleteById(id);
     }

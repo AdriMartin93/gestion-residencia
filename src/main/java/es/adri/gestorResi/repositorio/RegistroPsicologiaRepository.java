@@ -11,6 +11,7 @@ import java.util.Optional;
 @Repository
 public interface RegistroPsicologiaRepository extends JpaRepository<RegistroPsicologia,Long> {
 
+    List<RegistroPsicologia> findByResidentesIdOrderByFechaDesc(Long residenteId);
     Optional<RegistroPsicologia> findByFecha(LocalDate fecha);
     List<RegistroPsicologia> findAllByOrderByFechaDesc();
     List<RegistroPsicologia> findByEmpleadoId(Long empleadoId);

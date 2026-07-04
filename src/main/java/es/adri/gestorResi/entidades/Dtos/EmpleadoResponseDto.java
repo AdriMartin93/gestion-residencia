@@ -1,6 +1,6 @@
 package es.adri.gestorResi.entidades.Dtos;
 
-
+import es.adri.gestorResi.entidades.enums.Roles;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,7 +10,7 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class EmpleadoDTOcompleto {
+public class EmpleadoResponseDto {
 
     private Long id;
     private String nombreUsuario;
@@ -19,6 +19,7 @@ public class EmpleadoDTOcompleto {
     private String apellidos;
     private String email;
     private String telefono;
-
-    private Set<String> roles;
+    private Set<Roles> roles;
+    private Long empresaId;
 }
+

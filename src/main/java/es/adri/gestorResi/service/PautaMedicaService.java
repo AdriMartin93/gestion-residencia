@@ -22,7 +22,7 @@ public class PautaMedicaService {
 
     @Transactional
     public PautaMedica crearPauta(Long residenteId, PautaMedica nuevaPauta){
-        Residente residente = residenteRepository.findByResidenteId(residenteId)
+        Residente residente = residenteRepository.findById(residenteId)
                 .orElseThrow(()-> new EntityNotFoundException("Residente no encontrado"));
         nuevaPauta.setResidente(residente);
 

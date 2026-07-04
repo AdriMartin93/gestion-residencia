@@ -13,6 +13,7 @@ public interface ParteDiarioRepository extends JpaRepository<ParteDiario, Long> 
 
     Optional<ParteDiario> findByFecha(LocalDate fecha);
     List<ParteDiario> findAllByOrderByFechaDesc();
-    List<ParteDiario> findByEmpleadoId(Long empleadoId);
+
+    List<ParteDiario> findByCreador_Id(Long empleadoId);
 
 }

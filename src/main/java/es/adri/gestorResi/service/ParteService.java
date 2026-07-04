@@ -28,8 +28,8 @@ public class ParteService {
         return parteDiarioRepository.findAllByOrderByFechaDesc();
     }
 
-    public List<ParteDiario> mostrarParteByEmpleadoId(Long id){
-        return parteDiarioRepository.findByEmpleadoId(id);
+    public List<ParteDiario> mostrarParteByCreador_Id(Long empleadoId){
+        return parteDiarioRepository.findByCreador_Id(empleadoId);
     }
 
     public ParteDiario mostrarParteById(Long id){

@@ -15,19 +15,22 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/residentes")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class ResidentesControllers {
 
     private final ResidenteService residenteService;
 
     @GetMapping
     public ResponseEntity<List<Residente>> listarTodos() {
-        return ResponseEntity.ok(residenteService.listarTodos());
+        List<Residente> residentes = residenteService.listarTodos();
+        return ResponseEntity.ok(residentes);
     }
 
 
     @GetMapping("/{id}")
     public ResponseEntity<Residente> obtenerPorId(@PathVariable Long id) {
-        return ResponseEntity.ok(residenteService.buscarPorId(id));
+        Residente residente = residenteService.buscarPorId(id);
+        return ResponseEntity.ok(residente);
     }
 
 
@@ -46,6 +49,8 @@ public class ResidentesControllers {
         try {
             residenteService.actualizarParcial(id, campos);
             return ResponseEntity.ok("Residente actualizado correctamente");
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body("Error en los campos enviados: " + e.getLocalizedMessage());
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error al actualizar: " + e.getMessage());
         }
@@ -59,7 +64,7 @@ public class ResidentesControllers {
     }
 
     @PostMapping("/{id}/contactos")
-    public ResponseEntity<Void> añadirContacto(@PathVariable Long id, @RequestBody Contacto contacto) {
+    public ResponseEntity<Void> anyadirContacto(@PathVariable Long id, @RequestBody Contacto contacto) {
         residenteService.agregarContacto(id, contacto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }

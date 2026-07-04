@@ -47,7 +47,7 @@ public class ResidenteService {
 
     @Transactional
     public void agregarContacto(Long id, Contacto contacto){
-        Residente residente = residenteRepository.findByResidenteId(id)
+        Residente residente = residenteRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Residente no encontrado"));
         residente.getContactos().add(contacto);
         residenteRepository.save(residente);
@@ -55,7 +55,7 @@ public class ResidenteService {
 
     @Transactional
     public void borrarContacto(Long residenteId, Contacto contacto){
-        Residente residente = residenteRepository.findByResidenteId(residenteId)
+        Residente residente = residenteRepository.findById(residenteId)
                 .orElseThrow(() -> new EntityNotFoundException("Residente no encontrado"));
         residente.getContactos().remove(contacto);
     }

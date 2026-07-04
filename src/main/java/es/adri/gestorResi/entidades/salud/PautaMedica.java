@@ -22,6 +22,9 @@ public class PautaMedica {
     @ManyToOne
     private Residente residente;
 
+    @ManyToOne
+    @JoinColumn(name = "historial_medico_id")
+    private HistorialMedico historialMedico;
 
     private String medicamento;
     private String dosis;

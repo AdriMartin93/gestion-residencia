@@ -32,7 +32,7 @@ public class CuidadosService {
     @Transactional
     public void registrarEvacuacion(Long residenteId, Long empleadoId, Evacuaciones registro) {
 
-        Residente residente = residenteRepository.findByResidenteId(residenteId)
+        Residente residente = residenteRepository.findById(residenteId)
                 .orElseThrow(()-> new EntityNotFoundException("Residente no encontrado"));
 
         Empleado empleado = empleadoRepository.findById(empleadoId)
@@ -50,7 +50,7 @@ public class CuidadosService {
     @Transactional
     public void registrarHigiene(Long residenteId, Long empleadoId, Higiene registro) {
 
-        Residente residente = residenteRepository.findByResidenteId(residenteId)
+        Residente residente = residenteRepository.findById(residenteId)
                 .orElseThrow(()-> new EntityNotFoundException("Residente no encontrado"));
 
         Empleado empleado = empleadoRepository.findById(empleadoId)
@@ -68,7 +68,7 @@ public class CuidadosService {
     @Transactional
     public void registrarCambioPostural(Long residenteId, Long empleadoId, CambioPostural registro) {
 
-        Residente residente = residenteRepository.findByResidenteId(residenteId)
+        Residente residente = residenteRepository.findById(residenteId)
                 .orElseThrow(()-> new EntityNotFoundException("Residente no encontrado"));
 
         Empleado empleado = empleadoRepository.findById(empleadoId)

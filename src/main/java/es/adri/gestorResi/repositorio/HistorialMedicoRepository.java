@@ -18,5 +18,6 @@ public interface HistorialMedicoRepository extends JpaRepository<HistorialMedico
     @Query("SELECT r.historialMedico FROM Residente r WHERE r.id = :residenteId")
     Optional<HistorialMedico> findByResidenteId(@Param("residenteId") Long residenteId);
 
+    @Query("SELECT h FROM Residente r JOIN r.historialMedico h ORDER BY r.nombre ASC")
     List<HistorialMedico> findAllByOrderByResidenteNombreAsc();
 }

@@ -79,7 +79,7 @@ public class AnimacionService {
     }
 
     @Transactional
-    public void añadirParticipante(Long registroId, Long residenteId) {
+    public void anyadirParticipante(Long registroId, Long residenteId) {
         RegistroAnimacion registro = encontrarRegistro(registroId);
         Residente residente = residenteRepository.findById(residenteId)
                 .orElseThrow(() -> new EntityNotFoundException("Residente no encontrado"));

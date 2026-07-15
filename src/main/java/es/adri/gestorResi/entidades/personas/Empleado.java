@@ -50,7 +50,7 @@ public class Empleado {
     @Pattern(regexp = "^[0-9]{9}$", message = "El teléfono debe tener exactamente 9 dígitos")
     private String telefono;
 
-    @ElementCollection(targetClass = Roles.class)
+    @ElementCollection(targetClass = Roles.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "empleado_roles", joinColumns = @JoinColumn(name = "empleado_id"))
     @Enumerated(EnumType.STRING)
     private Set<Roles> roles;

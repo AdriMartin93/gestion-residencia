@@ -1,5 +1,6 @@
 package es.adri.gestorResi.entidades.salud;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import es.adri.gestorResi.entidades.personas.Residente;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -20,10 +21,12 @@ public class PautaMedica {
     private Long id;
 
     @ManyToOne
+    @JsonIgnoreProperties({"contactos", "historialMedico"})
     private Residente residente;
 
     @ManyToOne
     @JoinColumn(name = "historial_medico_id")
+    @JsonIgnoreProperties("pautaMedica")
     private HistorialMedico historialMedico;
 
     private String medicamento;

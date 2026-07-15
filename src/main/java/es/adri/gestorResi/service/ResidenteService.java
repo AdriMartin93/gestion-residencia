@@ -26,17 +26,22 @@ public class ResidenteService {
         if(residente.getHistorialMedico() == null) {
             residente.setHistorialMedico(new HistorialMedico());
         }
+        if (residente.getContactos() != null) {
+            java.util.Set<Contacto> contactosIntermedios = new java.util.HashSet<>(residente.getContactos());
+            residente.getContactos().clear();
+            residente.getContactos().addAll(contactosIntermedios);
+        }
         return residenteRepository.save(residente);
     }
 
     @Transactional
     public void borrarResidente(Residente residente){
 
-        residenteRepository.delete(residente);
+        residenteRepository.softDeleteById(residente.getId());
     }
 
     public List<Residente> listarTodos() {
-        return residenteRepository.findAll();
+        return residenteRepository.findAllByActivoTrue();
     }
 
     public Residente buscarPorId(Long id) {
@@ -84,6 +89,20 @@ public class ResidenteService {
                     break;
                 case "fechaNacimiento":
                     residente.setFechaNacimiento(LocalDate.parse((String) valor));
+                    break;
+                case "contactos":
+                    if (valor instanceof List) {
+                        List<Map<String, Object>> listaContactosMap = (List<Map<String, Object>>) valor;
+
+                        for (Map<String, Object> conMap : listaContactosMap) {
+                            Contacto nuevoContacto = new Contacto();
+                            nuevoContacto.setNombre((String) conMap.get("nombre"));
+                            nuevoContacto.setParentesco((String) conMap.get("parentesco"));
+                            nuevoContacto.setTelefono((String) conMap.get("telefono"));
+                            nuevoContacto.setEmail((String) conMap.get("email"));
+                            residente.getContactos().add(nuevoContacto);
+                        }
+                    }
                     break;
                 default:
                     throw new IllegalArgumentException("El campo " + clave + " no es editable o no existe");

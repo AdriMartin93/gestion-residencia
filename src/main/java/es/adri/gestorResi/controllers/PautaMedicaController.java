@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/pautas-medicas")
@@ -28,6 +29,12 @@ public class PautaMedicaController {
     public ResponseEntity<PautaMedica> obtenerPauta(@PathVariable Long id) {
         PautaMedica pauta = pautaMedicaService.encontrarPauta(id);
         return ResponseEntity.ok(pauta);
+    }
+
+    @GetMapping("/residente/{residenteId}")
+    public ResponseEntity<List<PautaMedica>> obtenerPautasPorResidente(@PathVariable Long residenteId) {
+        List<PautaMedica> pautas = pautaMedicaService.obtenerPautasPorResidente(residenteId);
+        return ResponseEntity.ok(pautas);
     }
 
     @DeleteMapping("/{id}")

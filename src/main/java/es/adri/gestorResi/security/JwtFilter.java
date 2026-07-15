@@ -40,15 +40,16 @@ public class JwtFilter extends OncePerRequestFilter {
 
             try{
                 username = jwtUtil.extractUsername(token);
+
             } catch(Exception e) {
                 System.out.println(e.getMessage());
+
             }
         }
 
         if(username != null && SecurityContextHolder.getContext().getAuthentication() == null){
 
-            if(jwtUtil.validateToken(token, username)) {
-
+            try {
                 Empleado empleado = empleadoService.findByNombreUsuario(username);
 
                 List<SimpleGrantedAuthority> authorities = empleado.getRoles().stream()
@@ -56,8 +57,10 @@ public class JwtFilter extends OncePerRequestFilter {
                         .collect(Collectors.toList());
 
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(username, null, authorities);
-
                 SecurityContextHolder.getContext().setAuthentication(authentication);
+            } catch (Exception filterExc) {
+                System.out.println("❌ ERROR CRÍTICO EN FILTRO JWT: " + filterExc.getMessage());
+                filterExc.printStackTrace();
             }
         }
 

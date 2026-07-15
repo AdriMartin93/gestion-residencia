@@ -1,5 +1,6 @@
 package es.adri.gestorResi.entidades.personas;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import es.adri.gestorResi.entidades.salud.HistorialMedico;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -25,13 +26,15 @@ public class Residente {
     private String apellidos;
     private LocalDate fechaNacimiento;
     private String habitacion;
+    private boolean activo = true;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "residente_contactos", joinColumns = @JoinColumn(name = "residente_id"))
-    private Set<Contacto> contactos = new HashSet();
+    private Set<Contacto> contactos = new HashSet<>();
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "historial_medico_id")
+    @com.fasterxml.jackson.annotation.JsonIgnoreProperties({"pautaMedica"})
     private HistorialMedico historialMedico;
 
 }

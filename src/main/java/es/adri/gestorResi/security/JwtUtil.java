@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Date;
+import java.util.List;
 import java.util.function.Function;
 
 
@@ -30,10 +31,11 @@ public class JwtUtil {
     }
 
 
-    public String generateToken(String username, Long empresaId){
+    public String generateToken(String username, Long empresaId, List<String> roles) {
         return Jwts.builder()
                 .setSubject(username)
                 .claim("empresaId", empresaId)
+                .claim("roles", roles)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + expirationTime))
                 .signWith(key)

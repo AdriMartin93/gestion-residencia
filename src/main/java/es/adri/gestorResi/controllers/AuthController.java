@@ -19,6 +19,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
@@ -43,7 +46,11 @@ public class AuthController {
 
             Empleado empleado = empleadoService.findByNombreUsuario(authentication.getName());
 
-            String token = jwtUtil.generateToken(authentication.getName(), empleado.getEmpresa().getId());
+            List<String> rolesString = empleado.getRoles().stream()
+                    .map(rol -> rol.name())
+                    .collect(Collectors.toList());
+
+            String token = jwtUtil.generateToken(authentication.getName(), empleado.getEmpresa().getId(), rolesString);
 
             return ResponseEntity.ok(new AuthResponse(token));
 

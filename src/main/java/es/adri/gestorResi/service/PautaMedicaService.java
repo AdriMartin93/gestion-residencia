@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -25,6 +26,7 @@ public class PautaMedicaService {
         Residente residente = residenteRepository.findById(residenteId)
                 .orElseThrow(()-> new EntityNotFoundException("Residente no encontrado"));
         nuevaPauta.setResidente(residente);
+        nuevaPauta.setHistorialMedico(residente.getHistorialMedico());
 
         return pautaMedicaRepository.save(nuevaPauta);
     }
@@ -39,6 +41,10 @@ public class PautaMedicaService {
 
         return pautaMedicaRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Pauta Médica no encontrada"));
+    }
+
+    public List<PautaMedica> obtenerPautasPorResidente(Long residenteId) {
+        return pautaMedicaRepository.findByResidenteId(residenteId);
     }
 
     @Transactional

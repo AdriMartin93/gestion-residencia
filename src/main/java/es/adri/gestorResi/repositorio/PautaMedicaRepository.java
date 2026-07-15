@@ -12,5 +12,7 @@ import java.util.Optional;
 public interface PautaMedicaRepository extends JpaRepository<PautaMedica, Long> {
 
     List<PautaMedica> findAllByResidenteId(long residenteId);
-
+    List<PautaMedica> findByResidenteId(Long residenteId);
 }
+
+

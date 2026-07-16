@@ -49,10 +49,9 @@
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
 
-        <!-- 2. Base de datos y Herramientas -->
         <dependency>
-            <groupId>com.mysql</groupId>
-            <artifactId>mysql-connector-j</artifactId>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -61,10 +60,6 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- 3. Servidor Tomcat (Obligatorio como provided al usar empaquetado WAR) -->
-
-
-        <!-- 4. Librerías para JSON Web Tokens (JJWT) -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-api</artifactId>
@@ -83,7 +78,6 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- 5. Dependencias de Test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa-test</artifactId>

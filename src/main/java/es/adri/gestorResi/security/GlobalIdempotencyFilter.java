@@ -14,7 +14,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 import java.time.Duration;
 
-@Component
+//@Component
 public class GlobalIdempotencyFilter extends OncePerRequestFilter {
 
 

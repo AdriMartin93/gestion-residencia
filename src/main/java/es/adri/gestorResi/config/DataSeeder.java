@@ -1,4 +1,4 @@
-package es.adri.gestorResi;
+package es.adri.gestorResi.config;
 
 
 import es.adri.gestorResi.entidades.enums.Roles;
@@ -8,25 +8,36 @@ import es.adri.gestorResi.repositorio.EmpleadoRepository;
 import es.adri.gestorResi.repositorio.EmpresaRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 
 import java.util.Set;
 
-@Configuration
-public class DataSeeder {
+@Component
+public class DataSeeder implements CommandLineRunner {
 
-    @Bean
-    CommandLineRunner initDatabase(
-            EmpresaRepository empresaRepository,
-            EmpleadoRepository empleadoRepository,
-            PasswordEncoder passwordEncoder
-    ) {
-        return args -> {
-            String usuarioDemo = "adminDemo";
-            String cifDemo = "B12345678";
+    private final EmpresaRepository empresaRepository;
+    private final EmpleadoRepository empleadoRepository;
+    private final PasswordEncoder passwordEncoder;
 
+    public DataSeeder(EmpresaRepository empresaRepository,
+                      EmpleadoRepository empleadoRepository,
+                      PasswordEncoder passwordEncoder) {
+        this.empresaRepository = empresaRepository;
+        this.empleadoRepository = empleadoRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
+
+    @Override
+    public void run(String... args) throws Exception {
+        System.out.println(">>>>>>>>>> INICIANDO EJECUCIÓN DE DATA SEEDER <<<<<<<<<<");
+
+        String usuarioDemo = "adminDemo";
+        String cifDemo = "B12345678";
+
+        try {
             if (!empleadoRepository.existsByNombreUsuario(usuarioDemo)) {
+                System.out.println("⏳ Usuario demo no encontrado, creando registros...");
 
                 Empresa empresaDemo = empresaRepository.findAll().stream()
                         .filter(e -> cifDemo.equals(e.getCif()))
@@ -38,7 +49,6 @@ public class DataSeeder {
                             nueva.setEmail("contacto@losolivosdemo.com");
                             return empresaRepository.save(nueva);
                         });
-
 
                 Empleado adminDemo = new Empleado();
                 adminDemo.setNombreUsuario(usuarioDemo);
@@ -53,8 +63,17 @@ public class DataSeeder {
 
                 empleadoRepository.save(adminDemo);
 
-                System.out.println("✅ Usuario demo creado/actualizado con éxito en PostgreSQL.");
+                System.out.println("=================================================");
+                System.out.println("✅ Usuario demo creado con éxito en PostgreSQL.");
+                System.out.println("👤 Usuario: " + usuarioDemo);
+                System.out.println("🔑 Password: admin123");
+                System.out.println("=================================================");
+            } else {
+                System.out.println("ℹ️ El usuario adminDemo ya existe en la base de datos.");
             }
-        };
+        } catch (Exception e) {
+            System.err.println("❌ ERROR AL EJECUTAR EL SEEDER: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 }
